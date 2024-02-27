@@ -2,7 +2,9 @@
 
 use App\Http\Controllers\ProfileController;
 use Illuminate\Support\Facades\Route;
-
+use Mockery\Matcher\Type;
+use Illuminate\Http\Request;
+use App\Models\Listing;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -14,9 +16,24 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+// All Lisiting
 Route::get('/', function () {
-    return view('welcome');
+    return view('listings', [
+        'heading' => 'Latest Listings',
+        'listings' => Listing::all()
+    ]);
 });
+
+
+// Single Lisiting
+Route::get('/listings/{id}', function ($id) {
+    return view('listing', [
+        'listing' => Listing::find($id)
+    ]);
+});
+
+
 
 Route::get('/dashboard', function () {
     return view('dashboard');
