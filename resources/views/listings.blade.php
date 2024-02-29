@@ -12,4 +12,3 @@
 @else
 <p>No Listing Found </p>
 @endunless
-
